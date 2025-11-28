@@ -6,6 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lanrelawal2002/parallels-max-manu.git"
+  },
   "author": "LANRE LAWAL",
   "license": "MIT",
   "dependencies": {
