@@ -17,7 +17,8 @@ app.get("/", function (req, res) {
 });
 
 app.get("/about", function (req, res) {
-  res.render("about");
+  const allCities = ["Jos", "Abuja", "Lagos", "Akure", "PortHarcourt"];
+  res.render("about", { cities: allCities });
 });
 
 app.get("/confirm", function (req, res) {
