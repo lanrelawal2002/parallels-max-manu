@@ -1,1 +1,32 @@
-[{"name":"Tastia Restaurant","address":"Oban Akran Avenue, Ikeja, Lagos.","cuisine":"Ghanian.","website":"https://www.tastiarestaurant.com","description":"I enjoyed the meal."},{"name":"Sweet Sensation","address":"13 Gana Street Maitama Abuja","cuisine":"Local and intercontinental","website":"https://sweetsensationglobal.com","description":"It is a great place to eat. Love the food!"}]
+[
+  {
+    "name": "Tastia Restaurant",
+    "address": "Oban Akran Avenue, Ikeja, Lagos.",
+    "cuisine": "Ghanian.",
+    "website": "https://www.tastiarestaurant.com",
+    "description": "I enjoyed the meal."
+  },
+  {
+    "name": "Sweet Sensation",
+    "address": "13 Gana Street Maitama Abuja",
+    "cuisine": "Local and intercontinental",
+    "website": "https://sweetsensationglobal.com",
+    "description": "It is a great place to eat. Love the food!"
+  },
+  {
+    "name": "Shayi Masters",
+    "address": "Oki Street Area 11, Abuja",
+    "cuisine": "Nigerian",
+    "website": "https://shayimasters.com",
+    "description": "It is close to my accomodation.",
+    "id": "ad6ae6f9-ad40-43ee-a587-704bd3cb9472"
+  },
+  {
+    "name": "Calabar Restaurant",
+    "address": "Miango Junction Jos",
+    "cuisine": "Local",
+    "website": "https://calabarrestaurant.com",
+    "description": "I get a variety of indigenous meals which are so delicious.",
+    "id": "ea8944bc-f239-479d-8a07-57d049aa7eb8"
+  }
+]

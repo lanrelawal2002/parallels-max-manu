@@ -1,8 +1,8 @@
 const path = require("path");
-
 const fs = require("fs");
 
 const express = require("express");
+const uuid = require("uuid");
 
 const app = express();
 
@@ -31,6 +31,8 @@ app.get("/recommend", function (req, res) {
 
 app.post("/recommend", function (req, res) {
   const restaurantData = req.body;
+  restaurantData.id = uuid.v4();
+
   const databasePath = path.join(__dirname, "database", "restaurants.json");
   const databaseContent = fs.readFileSync(databasePath);
   const restaurantsArray = JSON.parse(databaseContent);
@@ -50,6 +52,20 @@ app.get("/restaurants", function (req, res) {
     numberOfRestaurants: restaurantsArray.length,
     restaurants: restaurantsArray,
   });
+});
+
+app.get("/restaurants/:id", function (req, res) {
+  const restaurantId = req.params.id;
+
+  const databasePath = path.join(__dirname, "database", "restaurants.json");
+  const databaseContent = fs.readFileSync(databasePath);
+  const restaurantsArray = JSON.parse(databaseContent);
+
+  for (const restaurant of restaurantsArray) {
+    if (restaurant.id === restaurantId) {
+      return res.render("restaurant-detail", { restaurant: restaurant });
+    }
+  }
 });
 
 app.listen(3000);
