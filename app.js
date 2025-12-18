@@ -13,20 +13,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
-  res.render("index");
+  res.status(200).render("index");
 });
 
 app.get("/about", function (req, res) {
   const allCities = ["Jos", "Abuja", "Lagos", "Akure", "PortHarcourt"];
-  res.render("about", { cities: allCities });
+  res.status(200).render("about", { cities: allCities });
 });
 
 app.get("/confirm", function (req, res) {
-  res.render("confirm");
+  res.status(200).render("confirm");
 });
 
 app.get("/recommend", function (req, res) {
-  res.render("recommend");
+  res.status(200).render("recommend");
 });
 
 app.post("/recommend", function (req, res) {
@@ -48,7 +48,7 @@ app.get("/restaurants", function (req, res) {
   const databaseContent = fs.readFileSync(databasePath);
   const restaurantsArray = JSON.parse(databaseContent);
 
-  res.render("restaurants", {
+  res.status(200).render("restaurants", {
     numberOfRestaurants: restaurantsArray.length,
     restaurants: restaurantsArray,
   });
@@ -63,9 +63,21 @@ app.get("/restaurants/:id", function (req, res) {
 
   for (const restaurant of restaurantsArray) {
     if (restaurant.id === restaurantId) {
-      return res.render("restaurant-detail", { restaurant: restaurant });
+      return res
+        .status(200)
+        .render("restaurant-detail", { restaurant: restaurant });
     }
   }
+
+  res.status(404).render("404");
+});
+
+app.use(function (req, res) {
+  res.status(404).render("404");
+});
+
+app.use(function (error, req, res, next) {
+  res.status(500).render("500");
 });
 
 app.listen(3000);
