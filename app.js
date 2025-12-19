@@ -1,8 +1,9 @@
 const path = require("path");
-const fs = require("fs");
 
 const express = require("express");
 const uuid = require("uuid");
+
+const restaurantImport = require("./utility/restaurant-data");
 
 const app = express();
 
@@ -33,20 +34,16 @@ app.post("/recommend", function (req, res) {
   const restaurantData = req.body;
   restaurantData.id = uuid.v4();
 
-  const databasePath = path.join(__dirname, "database", "restaurants.json");
-  const databaseContent = fs.readFileSync(databasePath);
-  const restaurantsArray = JSON.parse(databaseContent);
+  const restaurantsArray = restaurantImport.getAllRestaurants();
 
   restaurantsArray.push(restaurantData); // restaurantData is a JS object
-  fs.writeFileSync(databasePath, JSON.stringify(restaurantsArray));
+  restaurantImport.updateRestaurantDatabase(restaurantsArray);
 
   res.redirect("/confirm");
 });
 
 app.get("/restaurants", function (req, res) {
-  const databasePath = path.join(__dirname, "database", "restaurants.json");
-  const databaseContent = fs.readFileSync(databasePath);
-  const restaurantsArray = JSON.parse(databaseContent);
+  const restaurantsArray = restaurantImport.getAllRestaurants();
 
   res.status(200).render("restaurants", {
     numberOfRestaurants: restaurantsArray.length,
@@ -57,9 +54,7 @@ app.get("/restaurants", function (req, res) {
 app.get("/restaurants/:id", function (req, res) {
   const restaurantId = req.params.id;
 
-  const databasePath = path.join(__dirname, "database", "restaurants.json");
-  const databaseContent = fs.readFileSync(databasePath);
-  const restaurantsArray = JSON.parse(databaseContent);
+  const restaurantsArray = restaurantImport.getAllRestaurants();
 
   for (const restaurant of restaurantsArray) {
     if (restaurant.id === restaurantId) {
